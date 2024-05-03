@@ -56,8 +56,26 @@ function registrer() {
     }
 
     if (gyldigInputs) {
-        $.post("/tilServer", person, function (){
+        $.post("/saveCitizen", person, function (){
             console.log("Sendt til server!");
+
+            $("#fornavn").val("");
+            $("#etternavn").val("");
+            $("#fodselsdato").val("");
+            $("#personnr").val("");
+            $("#telefonnr").val("");
+            $("#email").val("");
+            $("#by").val("");
+            $("#gatenavn").val("");
+
+            $("#feilFornavn").html("");
+            $("#feilEtternavn").html("");
+            $("#feilFodselsdato").html("");
+            $("#feilPersonnr").html("");
+            $("#feilTelefonnr").html("");
+            $("#feilEmail").html("");
+            $("#feilBy").html("");
+            $("#feilGatenavn").html("");
         });
     }
 }

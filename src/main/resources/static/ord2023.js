@@ -1,8 +1,18 @@
 function registrer() {
+    // Reset av feilmldfelter
+    $("#feilFornavn").html("");
+    $("#feilEtternavn").html("");
+    $("#feilFodselsdato").html("");
+    $("#feilPersonnr").html("");
+    $("#feilTelefonnr").html("");
+    $("#feilEmail").html("");
+    $("#feilBy").html("");
+    $("#feilGatenavn").html("");
+
     // Validering med RegExp for alle input feltene
     const tekstRegex = /^[A-Za-z]+$/;
     const fodselsdatoRegex = /^[0-9]+\.[0-9]+\.[0-9]{2,4}$/;
-    const telefonnrRegex = /^[0-9]{8,12}$/;
+    const telefonnrRegex = /^[0-9]{8}$/;
     const personnrRegex = /^[0-9]{11}$/;
     const epostRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
@@ -43,7 +53,7 @@ function registrer() {
         gyldigInputs = false;
     }
     if (!epostRegex.test(person.email)) {
-        $("#feilEpost").html("Ugyldig input ved epost");
+        $("#feilEmail").html("Ugyldig input ved epost");
         gyldigInputs = false;
     }
     if (!tekstRegex.test(person.by)) {
@@ -57,8 +67,6 @@ function registrer() {
 
     if (gyldigInputs) {
         $.post("/saveCitizen", person, function (){
-            console.log("Sendt til server!");
-
             $("#fornavn").val("");
             $("#etternavn").val("");
             $("#fodselsdato").val("");

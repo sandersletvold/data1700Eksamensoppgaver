@@ -87,3 +87,11 @@ function registrer() {
         });
     }
 }
+
+function login() {
+    $.post("/login", function () {
+        $.get("/removeUnderage", function () {
+
+        });
+    });
+}

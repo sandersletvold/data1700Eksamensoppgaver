@@ -6,7 +6,6 @@ import org.apache.catalina.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -27,8 +26,8 @@ public class Ord2023Controller {
     private Logger logger = LoggerFactory.getLogger(Ord2023Controller.class);
 
     @PostMapping("/login")
-    public void saveCitizen(User user, HttpServletResponse response) throws IOException {
-        session.setAttribute("loggedIn", user);
+    public void saveCitizen(Ord2023 bruker){
+        session.setAttribute("loggedIn", bruker);
     }
 
     @GetMapping("/removeUnderage")
@@ -36,7 +35,8 @@ public class Ord2023Controller {
         String getCitizens = "SELECT * FROM Person";
         String removeCitizen = "DELETE FROM Person WHERE id = ?";
 
-        if (session.getAttribute("loggedIn") != null) {
+        if (session.getAttribute("loggedIn") == null) {
+            System.out.println("Hei");
             try {
                 List<Ord2023> personer = db.query(getCitizens, BeanPropertyRowMapper.newInstance(Ord2023.class));
                 for (Ord2023 person : personer) {

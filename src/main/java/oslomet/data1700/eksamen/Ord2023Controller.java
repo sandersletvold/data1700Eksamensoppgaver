@@ -6,7 +6,6 @@ import org.apache.catalina.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.Period;
 import java.util.List;
 
@@ -34,17 +32,6 @@ public class Ord2023Controller {
         session.setAttribute("loggedIn", user);
     }
 
-    public boolean calculateAge(String dateOfBirth) {
-        LocalDate birthDate = LocalDate.parse(dateOfBirth);
-        LocalDate currentDate = LocalDate.now();
-        Period age = Period.between(birthDate, currentDate);
-        if (age.getYears() < 18) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
     @GetMapping("/removeUnderage")
     public boolean removeUnderage(HttpServletResponse response) throws IOException {
         String getCitizens = "SELECT * FROM Person";
@@ -54,7 +41,7 @@ public class Ord2023Controller {
             try {
                 List<Ord2023> personer = db.query(getCitizens, BeanPropertyRowMapper.newInstance(Ord2023.class));
                 for (Ord2023 person : personer) {
-                    if (!calculateAge(person.getFodselsdato())) { // Placeholder if-condition
+                    if (person.getFornavn().equals("Sander")) { // Placeholder if-condition
                         // Sjekk om personen er over 18 år
                         db.update(removeCitizen, person.getId());
                     }

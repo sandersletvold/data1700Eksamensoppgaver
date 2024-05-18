@@ -11,7 +11,7 @@ function registrer() {
 
     // Validering med RegExp for alle input feltene
     const tekstRegex = /^[A-Za-z]+$/;
-    const fodselsdatoRegex = /^[0-9]+\.[0-9]+\.[0-9]{2,4}$/;
+    const fodselsdatoRegex = /^[0-9]{8}$/;
     const telefonnrRegex = /^[0-9]{8}$/;
     const personnrRegex = /^[0-9]{11}$/;
     const epostRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;

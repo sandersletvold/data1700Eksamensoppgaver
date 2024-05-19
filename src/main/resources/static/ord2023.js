@@ -88,10 +88,35 @@ function registrer() {
     }
 }
 
-function login() {
-    $.post("/login", function () {
-        $.get("/removeUnderage", function () {
+function logginn() {
+    const bruker = {
+        brukernavn : $("#brukernavn").val(),
+        passord : $("#passord").val()
+    };
+    $.get("/loggInn", bruker, function (OK){
+        if (OK) {
+            window.location.href = 'ord2023.html';
+        } else {
+            console.log("Feil brukernavn eller passord");
+        }
+    });
+}
 
-        });
+function signUp() {
+    const nyBruker = {
+        nyttBrukernavn : $("#nyttBrukernavn").val(),
+        nyttPassord : $("#nyttPassord").val()
+    };
+    $.ajax({
+        url: "/signUp",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(nyBruker)
+    });
+}
+
+function signOut() {
+    $.get("/signOut", function (){
+        window.location.href = "ord2023logginn.html";
     });
 }

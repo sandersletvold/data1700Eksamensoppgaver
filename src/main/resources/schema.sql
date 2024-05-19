@@ -10,3 +10,10 @@ CREATE TABLE Person (
     gatenavn VARCHAR(30),
     PRIMARY KEY (id)
 );
+
+CREATE TABLE Bruker (
+    id INTEGER AUTO_INCREMENT NOT NULL,
+    brukernavn VARCHAR(30),
+    passord VARCHAR(255),
+    PRIMARY KEY (id)
+);

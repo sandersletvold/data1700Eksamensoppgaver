@@ -96,8 +96,12 @@ function logginn() {
     $.get("/loggInn", bruker, function (OK){
         if (OK) {
             window.location.href = 'ord2023.html';
+            $("#brukernavn").val("");
+            $("#passord").val("");
         } else {
-            console.log("Feil brukernavn eller passord");
+            $("#feilBruker").html("Feil brukernavn eller passord");
+            $("#brukernavn").val("");
+            $("#passord").val("");
         }
     });
 }
@@ -113,6 +117,8 @@ function signUp() {
         contentType: "application/json",
         data: JSON.stringify(nyBruker)
     });
+    $("#nyttBrukernavn").val("");
+    $("#nyttPassord").val("");
 }
 
 function signOut() {

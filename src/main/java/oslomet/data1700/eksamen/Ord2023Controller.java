@@ -41,7 +41,6 @@ public class Ord2023Controller {
         }
     }
 
-
     // OPPRETTE BRUKER
     @PostMapping("/signUp")
     public void signUp(@RequestBody Ord2023Bruker bruker) {
@@ -75,7 +74,6 @@ public class Ord2023Controller {
         String hashedPassord = bCrypt.encode(passord);
         return hashedPassord;
     }
-
 
     // INNLOGGING
     @GetMapping("/loggInn")
@@ -112,7 +110,6 @@ public class Ord2023Controller {
         }
         return false;
     }
-
 
     // LOGG UT
     @GetMapping("/signOut")

@@ -1,9 +1,7 @@
 package oslomet.data1700.eksamen;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Kunde")
@@ -26,6 +24,11 @@ public class Ord2022Bruker {
 
     public Ord2022Bruker() {
 
+    }
+
+    public Ord2022Bruker(String NAVN, String PASSORD) {
+        this.NAVN = NAVN;
+        this.PASSORD = PASSORD;
     }
 
     public Integer getKID() {

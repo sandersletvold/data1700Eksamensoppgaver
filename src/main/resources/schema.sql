@@ -40,4 +40,3 @@ CREATE TABLE Kunde (
 );
 
 INSERT INTO Kunde (NAVN, MOBIL, EPOST, PASSORD) VALUES ('Sander', '12345678', 'admin.oslomet@webprog.no', 'Admin123');
-INSERT INTO Kunde (NAVN, MOBIL, EPOST, PASSORD) VALUES ('Marie', '87654321', 'mod.uio@juss.no', 'Mod123');

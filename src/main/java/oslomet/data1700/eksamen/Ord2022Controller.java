@@ -1,15 +1,20 @@
 package oslomet.data1700.eksamen;
 
+import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class Ord2022Controller {
     private Logger logger;
+
+    @Autowired
+    private HttpSession session;
+
+    @Autowired
+    private JdbcTemplate db;
 
     // Oppgave 1
     @GetMapping("/sjekk")
@@ -17,12 +22,28 @@ public class Ord2022Controller {
         return "OK";
     }
 
-    // Oppgave 4 (forenklet)
-    @Autowired
-    private JdbcTemplate db;
+    // INNLOGGING UTEN KRYPTERING
+    @GetMapping("/login")
+    public boolean login(String NAVN, String PASSORD) {
+        String sql = "SELECT COUNT(*) FROM Kunde WHERE NAVN = ? AND PASSORD = ?";
+        try {
+            int funnetEnBruker = db.queryForObject(sql, Integer.class, NAVN, PASSORD);
+            if (funnetEnBruker > 0){
+                session.setAttribute("Innlogget", true);
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        catch (Exception e) {
+            return false;
+        }
+    }
 
-    @PostMapping("/bestilling")
-    public void bestilling(Ord2022 bestilling) {
-
+    // UTLOGGING
+    @GetMapping("/logut")
+    public void loggUt(){
+        session.removeAttribute("Innlogget");
     }
 }

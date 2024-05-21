@@ -47,3 +47,30 @@ function sendBestilling() {
         });
     }
 }
+
+// INNLOGGING
+function logginnUtenKryptering(Bruker) {
+    const Kunde = {
+        NAVN : $("#NAVN").val(),
+        PASSORD : $("#PASSORD").val()
+    };
+    $.get("/login", Kunde, function (OK){
+        if (OK) {
+            window.location.href = 'ord2022.html';
+            $("#NAVN").val("");
+            $("#PASSORD").val("");
+        } else {
+            $("#wrongUser").html("Feil brukernavn eller passord");
+            $("#NAVN").val("");
+            $("#PASSORD").val("");
+        }
+    });
+}
+
+// UTLOGGING
+function logut() {
+    $.get("/logut", function (){
+        window.location.href = 'ord2022logginn.html';
+        alert("Logget ut!");
+    });
+}

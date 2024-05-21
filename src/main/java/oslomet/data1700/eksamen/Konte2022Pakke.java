@@ -5,11 +5,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-/*@Entity
-@Table(name = "Pakke") */
+@Entity
+@Table(name = "Pakke")
 public class Konte2022Pakke {
-    /*@Id
-    @GeneratedValue*/
+    @Id
+    @GeneratedValue
     private Integer LID;
     private String EIER;
     private Double VEKT;

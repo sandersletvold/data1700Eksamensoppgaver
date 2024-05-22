@@ -24,10 +24,10 @@ public class Ord2022Controller {
 
     // INNLOGGING UTEN KRYPTERING
     @GetMapping("/login")
-    public boolean login(String NAVN, String PASSORD) {
+    public boolean login(Ord2022Bruker bruker) {
         String sql = "SELECT COUNT(*) FROM Kunde WHERE NAVN = ? AND PASSORD = ?";
         try {
-            int funnetEnBruker = db.queryForObject(sql, Integer.class, NAVN, PASSORD);
+            int funnetEnBruker = db.queryForObject(sql, Integer.class, bruker.getNAVN(), bruker.getPASSORD());
             if (funnetEnBruker > 0){
                 session.setAttribute("Innlogget", true);
                 return true;

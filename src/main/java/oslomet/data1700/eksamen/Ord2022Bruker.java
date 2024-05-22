@@ -14,11 +14,11 @@ public class Ord2022Bruker {
     private String EPOST;
     private String PASSORD;
 
-    public Ord2022Bruker(String EPOST, String MOBIL, String NAVN, Integer KID, String PASSORD) {
+    public Ord2022Bruker(Integer KID, String EPOST, String MOBIL, String NAVN, String PASSORD) {
+        this.KID = KID;
         this.EPOST = EPOST;
         this.MOBIL = MOBIL;
         this.NAVN = NAVN;
-        this.KID = KID;
         this.PASSORD = PASSORD;
     }
 
